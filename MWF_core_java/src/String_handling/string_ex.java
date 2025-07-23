@@ -33,6 +33,7 @@ public class string_ex {
 		for(char c:arr) {
 			System.out.println(c + " "); // Print each character in the array
 		}
+		System.out.println(str.valueOf(10));
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a string: ");

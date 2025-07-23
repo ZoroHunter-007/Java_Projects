@@ -26,9 +26,7 @@ public class cust_ex {
 		}
 		else
 		{
-			System.out.println("Roll No: " + rno);
-			System.out.println("Name: " + name);
-			System.out.println("Age is valid: " + age);
+			System.out.println(name + " you are eligible for the registration" );
 		}
 	}
 	
