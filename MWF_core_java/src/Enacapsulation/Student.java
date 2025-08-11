@@ -1,5 +1,9 @@
 package Enacapsulation;
-
+class NumberException extends Exception{
+	public NumberException(String message) {
+		super(message);
+	}
+}
 public class Student {
 
 	private String name;
@@ -20,14 +24,14 @@ public class Student {
 	public int[] getMarks() {
 		return marks;
 	}
-	public void setMarks(int[] marks) {
-		if(marks.length==3)
+	public void setMarks(int[] marks)throws NumberException {
+		if(marks.length!=3)
 		{
-			this.marks=marks;
+			throw new NumberException("Enter only 3 Subject...!");
 		}
 		else
 		{
-			System.out.println("Enter only 3 subject...!");
+			this.marks=marks;
 		}
 	}
 	public void printMarks() {
@@ -40,32 +44,32 @@ public class Student {
 	public double calcAvg(){
 		
 		int sum=0;
-		for(int mark:marks) sum+=mark;
+		for(int mark:marks)
+			sum+=mark;
 		double avg= sum/3.0;
-		System.out.println("Avrage is: " +avg);
+		//System.out.println("Average is: " +avg);
 		return avg;
 		
-		
-	}
+}
 	public char Grade() {
 		double avg=calcAvg();
 		if(avg>=90) 
 		{
-			System.out.println("Grade:A");
+			//System.out.println("Grade:A");
 		return 'A';
 		}
 		else if(avg>=75) 
 		{
-			System.out.println("Grade:A");
+			//System.out.println("Grade:A");
 		return 'A';
 		}
 		else if(avg>=60) 
 		{
-			System.out.println("Grade:A");
+			//System.out.println("Grade:A");
 		return 'A';
 		}
 		else {
-			System.out.println("Grade:D");
+			//System.out.println("Grade:D");
 			return 'D';
 		}
 		

@@ -35,7 +35,7 @@ public class bank_encap {
 		if(amount>0)
 		{
 			balance+=amount;
-			System.out.println(amount +"your amount is deposited");
+			System.out.println(amount +" your amount is deposited");
 		}
 		else {
 			System.out.println("Please deposite positive amount");
