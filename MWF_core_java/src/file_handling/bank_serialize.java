@@ -32,12 +32,13 @@ public class bank_serialize {
 		o.writeObject(b);
 		o.writeObject(b1);
 		 
-		FileInputStream fin=new FileInputStream("bank.txt");
+		/*FileInputStream fin=new FileInputStream("bank.txt");
 		ObjectInputStream oi=new ObjectInputStream(fin);
 		Bank bank=(Bank) oi.readObject();
 		Bank bank1=(Bank) oi.readObject();
 		System.out.println("Account Number: " + b.ac_no + " Name: " + b.name + "Amount: " + b.amount + "Balance: " + b.balance);
 		System.out.println("Account Number: " + b1.ac_no + " Name: " + b1.name + " Amount: " + b1.amount + " Balance: " + b1.balance);
-	}
+	
+	*/}
 
 }
