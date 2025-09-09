@@ -30,7 +30,7 @@ public class user_value_database {
 	public void update(int rno,String s_name,String department,int id)
 	{
 		try {
-			PreparedStatement ps=con.prepareStatement("update student set rno=?,s_name=?,department=? where id=?");
+			PreparedStatement ps=con.prepareStatement("update student set rno=?,s_name=?,department=? where id=?"); 
 			ps.setInt(1, rno);
 			ps.setString(2, s_name);
 			ps.setString(3, department);
@@ -63,12 +63,7 @@ public class user_value_database {
 			PreparedStatement ps=con.prepareStatement("select* from student");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
-				int id=rs.getInt("id");
-				int rno=rs.getInt("rno");
-				String name=rs.getString("s_name");
-				String department=rs.getString("department");
-				
-				System.out.println("Student ID:"+ id+ "\tStudent Roll no:"+rno+"\tStudent Name:"+name+"\tStudent Department:"+department);
+				System.out.println("Student ID:"+rs.getInt("id") + "\tStudent Roll no:"+rs.getInt("rno")+"\tStudent Name:"+rs.getString("s_name")+"\tStudent Department:"+rs.getString("department"));
 			}
 			
 			
@@ -116,6 +111,7 @@ public class user_value_database {
 			case 2:
 				System.out.println("Enter ID you want to Update:");
 				int u_id=sc.nextInt();
+				
 				System.out.println("Enter Student Roll No:");
 				rno=sc.nextInt();
 				System.out.println("Enter Student Name:");

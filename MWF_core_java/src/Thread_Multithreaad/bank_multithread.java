@@ -1,5 +1,7 @@
 package Thread_Multithreaad;
 
+import java.util.Scanner;
+
 class Bank_1{
 	String name;
 	double amount;
@@ -17,25 +19,52 @@ class Bank_1{
 				e.printStackTrace();
 			}
 		}
+		else {
+			System.out.println("Insufficient Balance...!");
+		}
 	}
 }
 class cust_1 extends Thread{
-	
-	double balance=50000.00;
+	Scanner sc=new Scanner(System.in);
+
 	public void run() {
-		Bank_1.withdraw("Drhuv",6000.00,50000.00);
-		balance-=6000.00;
-		System.out.println("After withdraw balance is "+balance);
-	}
+		System.out.println("Enter the Name:");
+		String name=sc.next();
+		System.out.println("Enter the Amount Withdraw:");
+		double amt=sc.nextDouble();
+		System.out.println("Enter the Balance:");
+		double balance=sc.nextDouble();
 	
+		Bank_1.withdraw(name, amt, balance);
+		if(balance>amt) {
+			balance-=amt;
+			System.out.println("Current Balance in your A/c: "+balance);
+		}
+		else {
+			System.out.println("Failed to Withdrwal...!");
+		}
+}
 }
 class cust_2 extends Thread{
-	double balance=60000.00;
+	Scanner sc=new Scanner(System.in);
+
 	public void run() {
-		Bank_1.withdraw("Drhuval",6000.00,60000.00);
-		balance-=6000.00;
-		System.out.println("After withdraw balance is "+balance);
-	}
+		System.out.println("Enter the Name:");
+		String name=sc.next();
+		System.out.println("Enter the Amount Withdraw:");
+		double amt=sc.nextDouble();
+		System.out.println("Enter the Balance:");
+		double balance=sc.nextDouble();
+	
+		Bank_1.withdraw(name, amt, balance);
+		if(balance>amt) {
+			balance-=amt;
+			System.out.println("Current Balance in your A/c: "+balance);
+		}
+		else {
+			System.out.println("Failed to Withdrwal...!");
+		}
+}
 	
 }
 public class bank_multithread {
