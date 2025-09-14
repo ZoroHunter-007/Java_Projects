@@ -1,0 +1,22 @@
+@charset "UTF-8";
+body {
+	background-origin: border-box;
+}
+h1 {
+	font-family: monospace,serif;
+	font-size: 50px;
+	margin-right: 100px;
+	margin-left: 200px;
+	text-transform: capitalize;
+}
+input {
+	border-width: 3px;
+	border-bottom-width: 2px;
+	border-radius: 10px;
+	margin-right: 100px;
+	margin-left: 200px;
+}
+button {
+	background: #16165e; color: #fff; border: none; border-radius: 6px; padding: 10px;
+  font-size: 1rem; cursor: pointer;
+}
