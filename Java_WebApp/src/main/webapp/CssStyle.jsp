@@ -18,18 +18,25 @@
 <th style="background-color: lime; color:black;">Name</th>
 <th style="background-color: lime; color:black;">Age</th>
 <th style="background-color: lime; color:black;">City</th>
-<th style="padding: 10px; text-align: center;">Dhruv</th>
-<td style="text-align: center;">21</td>
+
 </tr>
 <tr>
-<td style="font-family: fantasy; font-size: 15px;  color: blue">Ahemdabad</td>
-<td style="font-stretch:expanded; font-size: 15px;  color: maroon;">Vadoadra</td>
-<td style="border:2px solid black; padding:10px;  text-align: center;">Surat</td>
+<td style="font-family: fantasy; font-size: 15px;  color: blue">Dhruv</td>
+<td style="font-stretch:expanded; font-size: 15px;  color: maroon;">21</td>
+<td style="border:2px solid black; padding:10px;  text-align: center;">Vadoadra</td>
 </tr>
 </table>
-<div style="background-color: purple; text-color:lime; text-align: center">
+<div style="background-color:yellow; text-color:black; text-align: center">
 <a href="">This is a div tag</a>
-<img src="images/xxluffy-zoro-0ki5axbaafa89t04.jpg" style="width:100px; height:100px; border:2px solid black;"/>
+<img src="images/ichigo.jpg"style="width:200px; height:150px;"/>
 </div>
+<span style="color: lime; text-decoration:underline; font-size: 50px; margin-left: 200px; text-align: center;"> This is span tag</span>
+<h1 style="background-color: lightblue; color:greeen; font-family: cursive; text-align: center;">This is h1 tag</h1>
+<h2 style="background-color: lime; color:red; font-family:serif; text-align: center;">This is h2 tag</h2>
+<h3 style="background-color: gray; color:black; font-family:monospace; text-align: center;">This is h3 tag</h3>
+<h4 style="background-color: olive; color:greeen; font-family: inherit; text-align: center;">This is h4 tag</h4>
+
+
+
 </body>
 </html>
