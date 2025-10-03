@@ -98,7 +98,7 @@
 <body>
   <div class="form-container">
     <h2>Create Account</h2>
-    <form action="InsertPage" method="post">
+    <form action="Register_burger" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="fullname">Full Name</label>
         <input type="text" id="fullname" name="fullname" required>
@@ -115,7 +115,11 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="reg_password" required>
       </div>
-         <input type="submit" class="btn" value="Register" onclick="validateLogin()"/>
+      <div class="form-group">
+        <label for="Upload Image">Upload Image</label>
+        <input type="file" id="image" name="image" required>
+      </div>
+         <input type="submit" class="btn" value="Register"/>
       <div class="link">
         Already have an account? <a href="Login_burger.jsp">Login</a>
       </div>

@@ -21,149 +21,229 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">🏦 MyBank</a>
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand ms-2" href="#">🏦 MyBank</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="#dashboard">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="#register">Register</a></li>
-          <li class="nav-item"><a class="nav-link" href="#login">Login</a></li>
+          
+          <li class="nav-item">
+             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal" title="Sign In / Register">
+                 <i class="fa fa-user me-1"></i>
+             </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to MyBank</h1>
     <p>Your trusted partner for secure banking</p>
-    <a href="#services" class="btn btn-light btn-lg mt-3">Explore Services</a>
+    <a href="#dashboard" class="btn btn-light btn-lg mt-3">Go to Dashboard</a>
   </section>
 
-  <!-- Services Section -->
-  <section class="container my-5" id="services">
-    <h2 class="text-center mb-4">Our Services</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card shadow text-center p-3">
-          <h5>💰 Deposit</h5>
-          <p>Secure and instant deposits to your account.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card shadow text-center p-3">
-          <h5>🏧 Withdraw</h5>
-          <p>Quick withdrawals from any branch or ATM.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card shadow text-center p-3">
-          <h5>🔄 Transfer</h5>
-          <p>Transfer money safely to any account worldwide.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dashboard Section -->
   <section class="container my-5" id="dashboard">
     <h2 class="text-center mb-4">User Dashboard</h2>
-    <div class="row">
-      <!-- Account Summary -->
-      <div class="col-md-4">
-        <div class="card shadow p-3">
-          <h5>Account Summary</h5>
-          <ul class="list-group">
-            <li class="list-group-item">Account Holder: John Doe</li>
-            <li class="list-group-item">Account Number: 123456</li>
-            <li class="list-group-item">Balance: $5000</li>
-          </ul>
+    
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="summary-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button" role="tab" aria-controls="summary" aria-selected="true">Account Summary</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit" aria-selected="false">Deposit</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="withdraw-tab" data-bs-toggle="tab" data-bs-target="#withdraw" type="button" role="tab" aria-controls="withdraw" aria-selected="false">Withdraw</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="transfer-tab" data-bs-toggle="tab" data-bs-target="#transfer" type="button" role="tab" aria-controls="transfer" aria-selected="false">Transfer</button>
+      </li>
+    </ul>
+
+    <div class="tab-content border border-top-0 p-3" id="myTabContent">
+      <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card shadow p-3 mb-3">
+              <h5>Account Summary</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Account Holder: John Doe</li>
+                <li class="list-group-item">Account Number: 123456</li>
+                <li class="list-group-item">Balance: $5000</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card shadow p-3">
+              <h5>Transaction History</h5>
+              <table class="table table-striped mb-0">
+                <thead>
+                  <tr><th>Date</th><th>Type</th><th>Amount</th><th>Balance</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>2025-09-15</td><td>Deposit</td><td>$1000</td><td>$5000</td></tr>
+                  <tr><td>2025-09-10</td><td>Withdraw</td><td>$500</td><td>$4000</td></tr>
+                  <tr><td>2025-09-01</td><td>Transfer</td><td>$200</td><td>$4500</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Transaction History -->
-      <div class="col-md-8">
-        <div class="card shadow p-3">
-          <h5>Transaction History</h5>
-          <table class="table table-striped">
-            <thead>
-              <tr><th>Date</th><th>Type</th><th>Amount</th><th>Balance</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>2025-09-15</td><td>Deposit</td><td>$1000</td><td>$5000</td></tr>
-              <tr><td>2025-09-10</td><td>Withdraw</td><td>$500</td><td>$4000</td></tr>
-              <tr><td>2025-09-01</td><td>Transfer</td><td>$200</td><td>$4500</td></tr>
-            </tbody>
-          </table>
+      
+        <div class="tab-pane fade" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="auth-card">
+                  <h4 class="auth-title">Make a Deposit</h4>
+                  <form>
+                    <div class="mb-3">
+                      <label for="depositAmount" class="form-label">Amount</label>
+                      <input type="number" class="form-control form-control-sm" id="depositAmount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="depositAccount" class="form-label">Account Number</label>
+                      <input type="text" class="form-control form-control-sm" id="depositAccount" placeholder="Enter account number" required>
+                    </div>
+                    <div class="d-flex justify-content-center"> 
+                      <button type="submit" class="btn btn-primary">Submit Deposit</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <div class="tab-pane fade" id="withdraw" role="tabpanel" aria-labelledby="withdraw-tab">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="auth-card">
+                  <h4 class="auth-title">Withdraw Funds</h4>
+                  <form>
+                    <div class="mb-3">
+                      <label for="withdrawAmount" class="form-label">Amount</label>
+                      <input type="number" class="form-control form-control-sm" id="withdrawAmount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="withdrawAccount" class="form-label">Account Number</label>
+                      <input type="text" class="form-control form-control-sm" id="withdrawAccount" placeholder="Enter account number" required>
+                    </div>
+                    <div class="d-flex justify-content-center"> 
+                      <button type="submit" class="btn btn-warning">Submit Withdrawal</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="transfer" role="tabpanel" aria-labelledby="transfer-tab">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="auth-card">
+                  <h4 class="auth-title">Transfer Funds</h4>
+                  <form>
+                    <div class="mb-3">
+                      <label for="transferAmount" class="form-label">Amount</label>
+                      <input type="number" class="form-control form-control-sm" id="transferAmount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipientAccount" class="form-label">Recipient Account Number</label>
+                      <input type="text" class="form-control form-control-sm" id="recipientAccount" placeholder="Enter recipient account" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="fromAccount" class="form-label">From Account Number</label>
+                      <input type="text" class="form-control form-control-sm" id="fromAccount" placeholder="Enter your account number" required>
+                    </div>
+                    <div class="d-flex justify-content-center"> 
+                      <button type="submit" class="btn btn-success">Submit Transfer</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Register Section -->
-  <section class="container my-5" id="register">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="auth-card">
-          <h2 class="auth-title">Create an Account</h2>
-          <form action="Register" method="post">
-            <div class="mb-3 input-group">
-              <span class="input-group-text"><i class="fa fa-user"></i></span>
-              <input type="text" class="form-control" placeholder="Full Name" required  name="username">
-            </div>
-            <div class="mb-3 input-group">
-              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-              <input type="text" class="form-control" placeholder="Phone Number" required name="pno">
-            </div>
-            <div class="mb-3 input-group">
-              <span class="input-group-text"><i class="fa fa-phone"></i></span>
-              <input type="email" class="form-control" placeholder="Email" required name="email">
-            </div>
-            <div class="mb-3 input-group">
-              <span class="input-group-text"><i class="fa fa-lock"></i></span>
-              <input type="password" class="form-control" placeholder="Password" required name="password">
-            </div>
-            <input type="submit" class="btn btn-primary w-100" value="Register">
-            <p class="text-center mt-3">Already have an account? <a href="#login">Login here</a></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Login Section -->
-  <section class="container my-5" id="login">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="auth-card">
-          <h2 class="auth-title">Login to Your Account</h2>
-          <form action="Register" method="post">
-            <div class="mb-3 input-group">
-              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-              <input type="email" class="form-control" placeholder="Email" required name="email">
-            </div>
-            <div class="mb-3 input-group">
-              <span class="input-group-text"><i class="fa fa-lock"></i></span>
-              <input type="password" class="form-control" placeholder="Password" required name="password">
-            </div>
-            <input type="submit" class="btn btn-success w-100" value="Login">
-            <p class="text-center mt-3">Don’t have an account? <a href="#register">Register here</a></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 MyBank. All Rights Reserved.</p>
   </footer>
+
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="authModalLabel">Access Your Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          
+          <ul class="nav nav-pills nav-justified mb-4" id="authTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#modal-login" type="button" role="tab" aria-controls="modal-login" aria-selected="true">Login</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#modal-register" type="button" role="tab" aria-controls="modal-register" aria-selected="false">Register</button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            
+            <div class="tab-pane fade show active" id="modal-login" role="tabpanel" aria-labelledby="login-tab">
+              <h4 class="auth-title">Login to Your Account</h4>
+              <form action="Login" method="post">
+                <div class="mb-3 input-group">
+                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                  <input type="email" class="form-control" placeholder="Email" required name="email">
+                </div>
+                <div class="mb-3 input-group">
+                  <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  <input type="password" class="form-control" placeholder="Password" required name="password">
+                </div>
+                <input type="submit" class="btn btn-success w-100" value="Login">
+              </form>
+            </div>
+
+            <div class="tab-pane fade" id="modal-register" role="tabpanel" aria-labelledby="register-tab">
+              <h4 class="auth-title">Create an Account</h4>
+              <form action="Register" method="post" enctype="multipart/form-data">
+                <div class="mb-3 input-group">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control" placeholder="Full Name" required  name="username">
+                </div>
+                <div class="mb-3 input-group">
+                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                  <input type="text" class="form-control" placeholder="Phone Number" required name="pno">
+                </div>
+                <div class="mb-3 input-group">
+                  <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                  <input type="email" class="form-control" placeholder="Email" required name="email">
+                </div>
+                <div class="mb-3 input-group">
+                  <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  <input type="password" class="form-control" placeholder="Password" required name="password">
+                </div>
+                <div class="mb-3 input-group">
+                  <span class="input-group-text"><i class="fa fa-image"></i></span>
+                  <input type="file" class="form-control" placeholder="Upload image" required name="image">
+                </div>
+                <input type="submit" class="btn btn-primary w-100" value="Register">
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   

@@ -2,36 +2,29 @@ package com.servlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
-import com.Connection.Dbconn;
 import com.dao.Data_dao;
 import com.model.user_reg;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class ShowData
  */
-@WebServlet("/Register")
-@MultipartConfig(maxFileSize = 16177215)
-public class Register extends HttpServlet {
+@WebServlet("/ShowData")
+public class ShowData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public ShowData() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,6 +34,13 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		Data_dao d=new Data_dao();
+		List<user_reg>list=d.showAllData();
+		request.setAttribute("List", list);
+		RequestDispatcher rd=request.getRequestDispatcher("show.jsp");
+		rd.forward(request, response);
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -49,30 +49,6 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username=request.getParameter("username");
-		String pno=request.getParameter("pno");
-		String email=request.getParameter("email");
-		String password=request.getParameter("password");
-		Part image=request.getPart("image");
-		InputStream file=image.getInputStream();
-		byte b[]=file.readAllBytes();
-		
-		user_reg ur=new user_reg();
-		ur.setUsername(username);
-		ur.setPhone(pno);
-		ur.setEmail(email);
-		ur.setPassword(password);
-		ur.setImage(b);
-		Data_dao da=new Data_dao();
-		String s=da.InsertData(ur);
-		if("Success".equalsIgnoreCase(s)) {
-			RequestDispatcher rd=request.getRequestDispatcher("Bank_web.jsp");
-			rd.forward(request, response);
-		}
-		
-		
-		
-		
 		doGet(request, response);
 	}
 

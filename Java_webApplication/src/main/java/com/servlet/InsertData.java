@@ -2,36 +2,26 @@ package com.servlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import com.Connection.Dbconn;
 import com.dao.Data_dao;
 import com.model.user_reg;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class InsertData
  */
-@WebServlet("/Register")
-@MultipartConfig(maxFileSize = 16177215)
-public class Register extends HttpServlet {
+@WebServlet("/InsertData")
+public class InsertData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	Data_dao d=new Data_dao();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public InsertData() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,6 +31,27 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String action=request.getParameter("action");
+		if("edit".equalsIgnoreCase(action)) {
+			String id=request.getParameter("id");
+			
+			user_reg u=d.GetId(Integer.parseInt(id));
+			request.setAttribute("edit", u);
+			request.getRequestDispatcher("edit.jsp").forward(request, response);
+		}
+		else if("delete".equalsIgnoreCase(action)) {
+			String id=request.getParameter("id");
+			
+			String s=d.DeleteId(Integer.parseInt(id));
+			if("Delete".equalsIgnoreCase(s)) {
+				RequestDispatcher rd= request.getRequestDispatcher("ShowData");
+				rd.forward(request, response);
+			}
+		}
+		// ... Inside your servlet's doPost/doGet method ...
+
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -49,30 +60,29 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String id=request.getParameter("id");
 		String username=request.getParameter("username");
-		String pno=request.getParameter("pno");
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
-		Part image=request.getPart("image");
-		InputStream file=image.getInputStream();
-		byte b[]=file.readAllBytes();
+		String phone=request.getParameter("phone");
+		
 		
 		user_reg ur=new user_reg();
 		ur.setUsername(username);
-		ur.setPhone(pno);
+		ur.setPassword(password);
 		ur.setEmail(email);
 		ur.setPassword(password);
-		ur.setImage(b);
-		Data_dao da=new Data_dao();
-		String s=da.InsertData(ur);
-		if("Success".equalsIgnoreCase(s)) {
-			RequestDispatcher rd=request.getRequestDispatcher("Bank_web.jsp");
+		ur.setPhone(phone);
+		
+		ur.setId(Integer.parseInt(id));
+		
+		Data_dao dao=new Data_dao();
+		String s=dao.UpdateData(ur);
+		if("Update".equalsIgnoreCase(s)) {
+			RequestDispatcher rd= request.getRequestDispatcher("ShowData");
 			rd.forward(request, response);
 		}
-		
-		
-		
-		
 		doGet(request, response);
 	}
 

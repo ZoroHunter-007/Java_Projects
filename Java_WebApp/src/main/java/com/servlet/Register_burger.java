@@ -2,37 +2,32 @@ package com.servlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.InputStream;
 
-import com.connection.Driver_load;
 import com.dao.DataDao;
 
 import com.model.User_reg;
 
-
 /**
- * Servlet implementation class InsertPage
+ * Servlet implementation class Register_burger
  */
-@WebServlet("/InsertPage")
-public class InsertPage extends HttpServlet {
+@WebServlet("/Register_burger")
+@MultipartConfig(maxFileSize = 16177215)
+public class Register_burger extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertPage() {
+    public Register_burger() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,7 +37,6 @@ public class InsertPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -50,30 +44,35 @@ public class InsertPage extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	     String email = request.getParameter("email");
-	        String password = request.getParameter("password");
+		// TODO Auto-generated method stub
+		
+		  String fullname=request.getParameter("fullname");
+		  String email = request.getParameter("email");
+		  String username=request.getParameter("reg_username");
+	      String password = request.getParameter("reg_password");
+	      Part image=request.getPart("image");
+	      InputStream file=image.getInputStream();
+	      byte b[]=file.readAllBytes();
 	        
-	        
-	     User_reg ur=new User_reg();
-	      ur.setEmail(email);
-	      ur.setPassword(password);
-	      
+	      User_reg u=new User_reg();
+	     u.setFullname(fullname);
+	     u.setEmail(email);
+	     u.setUsername(username);
+	     u.setPassword(password);
+	     u.setImage(b);
 	      DataDao d=new DataDao();
-	      String s=d.VerifyLogin(ur);
-	     if("Login".equalsIgnoreCase(s)) {
-	    	  RequestDispatcher rd=request.getRequestDispatcher("Burger_home.jsp");
+	      String s=d.InsertData(u);
+	      if ("Insert".equalsIgnoreCase(s)) {
+	    	  RequestDispatcher rd=request.getRequestDispatcher("Login_burger.jsp");
 	    	  rd.forward(request, response);
 	      }
 	      else {
-	    	  PrintWriter out=response.getWriter();
-	    	  out.println("<script type=\"text/javascript\">");
-	    	  out.println("alert('Invalid Email and Password....!');");
-	    	  out.println("location='Login_burger.jsp';");
-	    	  out.println("</script>");
+	    	  
+	    	  RequestDispatcher rd=request.getRequestDispatcher("Error.jsp");
+	    	  rd.forward(request, response);
 	      }
 	       
 		doGet(request, response);
-	    }
-	}	
+	}
 
+}
