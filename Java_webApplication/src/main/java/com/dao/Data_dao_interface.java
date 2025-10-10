@@ -1,6 +1,7 @@
 package com.dao;
 import java.util.List;
 
+import com.model.Account;
 
 import com.model.user_reg;
 
@@ -20,5 +21,12 @@ public interface Data_dao_interface {
 	
 	public String UpdateData(user_reg ur);
 	
+	public String InsertAccount(Account a);
+	
+	List<Account>ShowAccount();
+	
+	public String InsertTransaction(Account a);
+	
+	List<Account>ShowTransaction();
 	
 }

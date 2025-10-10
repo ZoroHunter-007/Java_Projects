@@ -1,12 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Burger Admin Panel</title>
+ <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> Admin Panel</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- nice select  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -96,8 +113,8 @@
 
   <div class="sidebar">
     <a href="#">Dashboard</a>
-    <a href="add_item.jsp">Manage Menu</a>
-    <a href="#">Orders</a>
+    <a href="addItem.jsp">Manage Menu</a>
+    <a href="ShowMenu">Orders</a>
     <a href="ShowData">Customers</a>
     
   </div>
@@ -110,17 +127,17 @@
       <div class="card">
         <h3>🍔 Menu Items</h3>
         <p>12 Active</p>
-        <a href="#" class="btn">Manage</a>
+        <a href="addItem.jsp" class="btn">Manage</a>
       </div>
       <div class="card">
         <h3>🛒 Orders</h3>
         <p>45 Today</p>
-        <a href="#" class="btn">View</a>
+        <a href="ShowMenu" class="btn">View</a>
       </div>
       <div class="card">
         <h3>👥 Customers</h3>
         <p>230 Registered</p>
-        <a href="#" class="btn">Check</a>
+        <a href="ShowData" class="btn">Check</a>
       </div>
       <div class="card">
         <h3>📊 Reports</h3>

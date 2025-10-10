@@ -2,11 +2,15 @@ package com.servlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import com.dao.DataDao;
@@ -16,6 +20,7 @@ import com.model.User_reg;
  * Servlet implementation class Modfied
  */
 @WebServlet("/Modfied")
+@MultipartConfig	
 public class Modfied extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -67,6 +72,11 @@ public class Modfied extends HttpServlet {
 		String username=request.getParameter("reg_username");
 		String password=request.getParameter("reg_password");
 		String id=request.getParameter("id");
+		Part image = request.getPart("Userimage");
+		
+			InputStream is=image.getInputStream();
+			byte[]	b=is.readAllBytes();
+		
 		
 		
 		User_reg ur=new User_reg();
@@ -74,9 +84,10 @@ public class Modfied extends HttpServlet {
 		ur.setEmail(email);
 		ur.setUsername(username);
 		ur.setPassword(password);
+		ur.setImage(b);
 		ur.setId(Integer.parseInt(id));
-		
-		// ... [code where you handle parameters and call d.UpdateId(ur)] ...
+	
+	
 
 		DataDao d = new DataDao();
 		String s = d.UpdateId(ur);

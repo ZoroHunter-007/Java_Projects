@@ -12,21 +12,21 @@ import jakarta.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.dao.Data_dao;
-import com.model.user_reg;
+import com.dao.DataDao;
+import com.model.addMenu;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class AddMenuItemServlet
  */
-@WebServlet("/Register")
-@MultipartConfig(maxFileSize = 16177215)
-public class Register extends HttpServlet {
+@MultipartConfig
+@WebServlet("/AddItemServlet")
+public class AddMenuItemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public AddMenuItemServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,30 +44,37 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username=request.getParameter("username");
-		String pno=request.getParameter("pno");
-		String email=request.getParameter("email");
-		String password=request.getParameter("password");
-		Part image=request.getPart("image");
-		InputStream file=image.getInputStream();
-		byte b[]=file.readAllBytes();
-		Mailer.send(email, "Account Registration Successfully","Welcome, "+username+" Your Account has been registred successfully.Thank you for choosing our bank application.");
-		user_reg ur=new user_reg();
-		ur.setUsername(username);
-		ur.setPhone(pno);
-		ur.setEmail(email);
-		ur.setPassword(password);
-		ur.setImage(b);
-		Data_dao da=new Data_dao();
-		String s=da.InsertData(ur);
-		if("Success".equalsIgnoreCase(s)) {
-			RequestDispatcher rd=request.getRequestDispatcher("Bank_web.jsp");
-			rd.forward(request, response);
+		
+		String itemName=request.getParameter("itemName");
+		String Description=request.getParameter("itemDescription");
+		String priceStr = request.getParameter("itemPrice");
+		double price = 0.0;
+		if (priceStr != null && !priceStr.trim().isEmpty()) {
+		    price = Double.parseDouble(priceStr);
 		}
 		
+		String cat=request.getParameter("itemCategory");
+		Part img = request.getPart("itemImage");
+		
+		    InputStream is = img.getInputStream();
+		   byte  b[]=is.readAllBytes();
+		    // Save image...
 		
 		
 		
+		addMenu m=new addMenu();
+		m.setItemName(itemName);
+		m.setDescription(Description);
+		m.setPrice(price);
+		m.setCat(cat);
+		m.setImageItem(b);
+		
+		DataDao dao=new DataDao();
+		String s=dao.AddMenu(m);
+		if("Inserted".equalsIgnoreCase(s)) {
+			RequestDispatcher rd=request.getRequestDispatcher("addItem.jsp");
+			rd.forward(request, response);
+		}
 		doGet(request, response);
 	}
 

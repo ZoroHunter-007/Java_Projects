@@ -1,11 +1,11 @@
-<%@page import="com.model.user_reg"%>
+<%@page import="com.model.Account"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -105,46 +105,36 @@
 </head>
 <body>
  <header>🏦 MyBank - User Management</header>
-<%
-List<user_reg>list=(List<user_reg>)request.getAttribute("List");
-
-%>
+<% List<Account> list=(List<Account>)request.getAttribute("List"); %>
 <div class="container">
-    <h2>Registered Users</h2>
+    <h2>Account Details</h2>
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Username</th>
-          <th>Phone</th>
-          <th>Password</th>
-          <th>Email</th>
-          <th>Image</th>
+          <th>Account Number</th>
+          <th>Account Holder Name</th>
+          <th>Account Type</th>
+          <th>Balance</th>
           <th>Actions</th>
         </tr>
       </thead>
 <%
-for(user_reg u:list)
-	{%>
-	<tbody>
+for(Account a:list){
+%>
+
 	<tr>
-	<td><%=u.getId() %></td>
-	<td><%=u.getUsername() %></td>
-	<td><%=u.getPhone() %></td>
-	<td><%=u.getPassword() %></td>
-	<td><%=u.getEmail() %></td>
-	<td>
-	<img src="ShowData?id=<%= u.getId() %>" alt="User Image" width="50" height="50"/>
-	</td>
-	
-	
-	 <td class="action-links">
-            <a href="InsertData?action=edit&id=<%=u.getId()%>" class="edit">Edit</a>
-            <a href="InsertData?action=delete&id=<%=u.getId()%>" class="delete">Delete</a>
+	<td><%=a.getAc_id() %></td>
+	<td><%=a.getAc_number() %></td>
+	<td><%=a.getHolder_name() %></td>
+	<td><%=a.getAc_type() %></td>
+	<td><%=a.getBalance() %></td>
+	<td class="action-links">
+            <a href="InsertData?action=edit&id=<%=a.getAc_id()%>" class="edit">Edit</a>
+            <a href="InsertData?action=delete&id=<%=a.getAc_id()%>" class="delete">Delete</a>
           </td>
 	</tr>
-	</tbody>
-<% 	
+<%	
 }
 %>
 </table>

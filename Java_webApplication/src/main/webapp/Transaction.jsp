@@ -1,4 +1,5 @@
-<%@page import="com.model.user_reg"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.model.Account"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -50,6 +51,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 15px;
+     
     }
 
     th, td {
@@ -86,12 +88,13 @@
     .edit {
       background: #4cafef;
       color: white;
-      margin-right: 5px;
+      margin-right: 15px;
     }
 
     .delete {
       background: #f44336;
       color: white;
+      margin-left: 15px;
     }
 
     .edit:hover {
@@ -105,47 +108,39 @@
 </head>
 <body>
  <header>🏦 MyBank - User Management</header>
-<%
-List<user_reg>list=(List<user_reg>)request.getAttribute("List");
-
-%>
+<%ArrayList<Account>al=(ArrayList<Account>) request.getAttribute("List"); %>
 <div class="container">
-    <h2>Registered Users</h2>
-    <table>
+    <h2>Account Details</h2>
+    <table  border="1">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Username</th>
-          <th>Phone</th>
-          <th>Password</th>
-          <th>Email</th>
-          <th>Image</th>
-          <th>Actions</th>
+          <th>Transaction ID</th>
+          <th>Account Number</th>
+          <th>Account Holder Name</th>
+          <th>Transaction Type</th>
+          <th>Balance</th>
+          <th>Amount</th>
+          <th>Transaction Date</th>
+         
         </tr>
       </thead>
-<%
-for(user_reg u:list)
-	{%>
-	<tbody>
+
+<% for(Account a:al){
+%>
+
 	<tr>
-	<td><%=u.getId() %></td>
-	<td><%=u.getUsername() %></td>
-	<td><%=u.getPhone() %></td>
-	<td><%=u.getPassword() %></td>
-	<td><%=u.getEmail() %></td>
-	<td>
-	<img src="ShowData?id=<%= u.getId() %>" alt="User Image" width="50" height="50"/>
-	</td>
+	<td><%=a.getT_id() %></td>
+	<td><%=a.getAc_number() %></td>
+	<td><%=a.getHolder_name() %></td>
+	<td><%=a.getT_type() %></td>
+	<td><%=a.getBalance() %></td>
+	<td><%=a.getAmount() %></td>
+	<td><%=a.getDate() %></td>
 	
-	
-	 <td class="action-links">
-            <a href="InsertData?action=edit&id=<%=u.getId()%>" class="edit">Edit</a>
-            <a href="InsertData?action=delete&id=<%=u.getId()%>" class="delete">Delete</a>
-          </td>
 	</tr>
-	</tbody>
-<% 	
+<% 
 }
+
 %>
 </table>
 </div>

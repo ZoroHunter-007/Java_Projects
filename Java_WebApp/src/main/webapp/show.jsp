@@ -6,7 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User List - Burger Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> User List-Admin Panel </title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -83,7 +92,7 @@
     <h2>🍔 User Management - Burger Admin Panel</h2>
 
     <%
-    List<User_reg> list = (List<User_reg>) request.getAttribute("List");
+    List<User_reg> list = (List<User_reg>) request.getAttribute("List1");
     %>
 
     <table>
@@ -108,7 +117,7 @@
             <td><%=u.getUsername() %></td>
             <td><%=u.getPassword() %></td>
             <td>
-            <img src="getImage?id=<%=u.getId() %>" alt="User Image" width="70" height="70">
+            <img src="ShowData?id=<%=u.getId() %>" alt="User Image" width="70" height="70">
             </td>
             <td><a href="Modfied?action=edit&id=<%=u.getId()%>" class="edit">Edit</a></td>
             <td><a href="Modfied?action=delete&id=<%=u.getId()%>" class="delete">Delete</a></td>
@@ -116,7 +125,39 @@
         <%
         }
         %>
+ 
+        
     </table>
+               <div style="text-align:center; margin-top: 20px;">
+        <%
+        int currentPage = (int) request.getAttribute("currentPage");
+        int totalPages = (int) request.getAttribute("totalPages");
+
+        if (totalPages > 1) {
+            if (currentPage > 1) {
+        %>
+                <a href="ShowData?page=<%=currentPage - 1%>" 
+                   style="background:#ffb347; color:white; padding:8px 14px; margin:5px; border-radius:6px;">Prev</a>
+        <%
+            }
+            for (int i = 1; i <= totalPages; i++) {
+        %>
+                <a href="ShowData?page=<%=i%>" 
+                   style="background:<%= (i == currentPage ? "#ff6f61" : "#333") %>;
+                          color:white; padding:8px 14px; margin:3px; border-radius:6px;">
+                    <%=i%>
+                </a>
+        <%
+            }
+            if (currentPage < totalPages) {
+        %>
+                <a href="ShowData?page=<%=currentPage + 1%>" 
+                   style="background:#ffb347; color:white; padding:8px 14px; margin:5px; border-radius:6px;">Next</a>
+        <%
+            }
+        }
+        %>
+    </div>
 </body>
 </html>
 

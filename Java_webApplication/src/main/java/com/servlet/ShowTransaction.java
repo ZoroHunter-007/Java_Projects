@@ -6,25 +6,24 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.connection.Driver_load;
+import com.dao.Data_dao;
+import com.model.Account;
 
 /**
- * Servlet implementation class GetImageServlet
+ * Servlet implementation class ShowTransaction
  */
-@WebServlet("/getImage")
-public class GetImageServlet extends HttpServlet {
+@WebServlet("/ShowTransaction")
+public class ShowTransaction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
+	Data_dao dao=new Data_dao();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetImageServlet() {
+    public ShowTransaction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,29 +34,10 @@ public class GetImageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-	int id=Integer.parseInt(request.getParameter("id"));
-	Driver_load d=new Driver_load();
-	Connection con=d.getConnection();
-	
-	try {
-		PreparedStatement ps=con.prepareStatement("SELECT image FROM user_reg WHERE id=?");
-		ps.setInt(1, id);
-		ResultSet rs=ps.executeQuery();
-		
-		if(rs.next()) {
-			byte b[]=rs.getBytes("image");
-			response.setContentType("image/jpeg");
-			OutputStream os=response.getOutputStream();
-			os.write(b);
-			os.flush();
-		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		ArrayList<Account>al=(ArrayList<Account>) dao.ShowTransaction();
+		request.setAttribute("List", al);
+		request.getRequestDispatcher("Transaction.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

@@ -24,8 +24,11 @@
     body {
         font-family: "Segoe UI", sans-serif;
         background: #f8f9fa; /* Light background for the main content area */
-        margin: 0;
-        display: flex; /* Enables sidebar layout */
+        display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
     }
     
     /* ------------------------------------- */
@@ -137,11 +140,21 @@
     .btn:hover {
         background: #d4ac0d; /* Darker orange on hover */
     }
+    .center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.center-image img {
+  max-width: 220px; /* optional: controls image size */
+  border-radius: 8px; /* optional: rounded corners */
+}
 </style>
 </head>
 <body>
 <% 
-List<User_reg>list=(List<User_reg>)request.getAttribute("list");
+List<User_reg>list=(List<User_reg>) request.getAttribute("list");
 
 if(list==null){
 	list=new ArrayList<>();
@@ -151,12 +164,22 @@ User_reg u=(User_reg)request.getAttribute("edit"); %>
   <%-- This page assumes a User_reg object named 'u' has been set 
      in the request scope by the preceding Servlet. --%>
 
-<div class="form-container">
+<div class="form-container" style="align-items: center;">
     <h2>Update Account</h2>
     
-    <form action="Modfied" method="post">
+    <form action="Modfied" method="post" enctype="multipart/form-data">
+        <div class="center-image">
         
-        <div class="form-group">
+        <% if (u != null && u.getId() > 0) { %>
+        <img src="ShowData?id=<%= u.getId() %>" 
+             alt="User Image">
+    <% } else { %>
+        <img src="images/default-avatar.png" 
+             alt="Default Image" 
+             style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid #ddd;">
+    <% } %>
+    </div>
+    <div class="form-group">
             <label for="id">ID</label>
             <input type="hidden" id="ID" name="id" required value="<%= u.getId() %>" />
             
@@ -178,9 +201,14 @@ User_reg u=(User_reg)request.getAttribute("edit"); %>
             <input type="text" id="username" name="reg_username" required value="<%= u.getUsername() %>" />
         </div>
         
+        
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="reg_password" placeholder="Enter new password to change" />
+        </div>
+         <div class="form-group">
+            <label for="Upload Image">Upload Image</label>
+            <input type="file" id="username" name="Userimage" value="<%= u.getImage() %>"  required/>
         </div>
         
         <input type="submit" class="btn" value="Update" />

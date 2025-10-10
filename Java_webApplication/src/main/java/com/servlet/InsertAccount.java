@@ -2,31 +2,27 @@ package com.servlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-
 import java.io.IOException;
-import java.io.InputStream;
 
 import com.dao.Data_dao;
-import com.model.user_reg;
+import com.model.Account;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class InsertAccount
  */
-@WebServlet("/Register")
-@MultipartConfig(maxFileSize = 16177215)
-public class Register extends HttpServlet {
+@WebServlet("/InsertAccount")
+public class InsertAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	Data_dao dao=new Data_dao();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public InsertAccount() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,29 +40,21 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username=request.getParameter("username");
-		String pno=request.getParameter("pno");
-		String email=request.getParameter("email");
-		String password=request.getParameter("password");
-		Part image=request.getPart("image");
-		InputStream file=image.getInputStream();
-		byte b[]=file.readAllBytes();
-		Mailer.send(email, "Account Registration Successfully","Welcome, "+username+" Your Account has been registred successfully.Thank you for choosing our bank application.");
-		user_reg ur=new user_reg();
-		ur.setUsername(username);
-		ur.setPhone(pno);
-		ur.setEmail(email);
-		ur.setPassword(password);
-		ur.setImage(b);
-		Data_dao da=new Data_dao();
-		String s=da.InsertData(ur);
-		if("Success".equalsIgnoreCase(s)) {
+		String account_num=request.getParameter("account_num");
+		String holder_nm=request.getParameter("holder_nm");
+		String account_type=request.getParameter("account_type");
+		String balance=request.getParameter("balance");
+		
+		Account a=new Account();
+		a.setAc_number(account_num);
+		a.setHolder_name(holder_nm);
+		a.setAc_type(account_type);
+		a.setBalance(Double.parseDouble(balance));
+		String s=dao.InsertAccount(a);
+		if("Inserted".equalsIgnoreCase(s)) {
 			RequestDispatcher rd=request.getRequestDispatcher("Bank_web.jsp");
 			rd.forward(request, response);
 		}
-		
-		
-		
 		
 		doGet(request, response);
 	}

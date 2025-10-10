@@ -53,7 +53,9 @@ public class Register_burger extends HttpServlet {
 	      Part image=request.getPart("image");
 	      InputStream file=image.getInputStream();
 	      byte b[]=file.readAllBytes();
-	        
+	       
+	      Mailer.send(email, "Welcome to our Food Resturant Website", "Hello "+fullname+",\n\nThank you for registering on our Food Resturant Website. We're excited to have you on board!\n\nBest regards,\nFood Resturant Team");
+	      
 	      User_reg u=new User_reg();
 	     u.setFullname(fullname);
 	     u.setEmail(email);

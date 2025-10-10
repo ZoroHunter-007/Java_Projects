@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.model.User_reg;
+import com.model.addMenu;
 
 public interface DaoInterface  {
 	//Insert Data
@@ -21,6 +22,10 @@ public interface DaoInterface  {
 	//delet data by id
 	public String DeleteId(int id);
 	
+	//Add menu item
+	public String AddMenu(addMenu m);
 	
+	public List<User_reg> getUserByPage(int start,int total);
 	
+     
 }

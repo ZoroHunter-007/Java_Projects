@@ -2,11 +2,15 @@ package com.servlet;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.dao.Data_dao;
 import com.model.user_reg;
@@ -15,6 +19,8 @@ import com.model.user_reg;
  * Servlet implementation class InsertData
  */
 @WebServlet("/InsertData")
+
+@MultipartConfig(maxFileSize = 16177215)
 public class InsertData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Data_dao d=new Data_dao();
@@ -66,7 +72,12 @@ public class InsertData extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		String phone=request.getParameter("phone");
+		Part image=request.getPart("image");
 		
+		//send the email to other mail that entered during the registration 
+		
+		InputStream file=image.getInputStream();
+		byte b[]=file.readAllBytes();
 		
 		user_reg ur=new user_reg();
 		ur.setUsername(username);
@@ -74,12 +85,14 @@ public class InsertData extends HttpServlet {
 		ur.setEmail(email);
 		ur.setPassword(password);
 		ur.setPhone(phone);
-		
+		ur.setImage(b);
 		ur.setId(Integer.parseInt(id));
 		
 		Data_dao dao=new Data_dao();
 		String s=dao.UpdateData(ur);
+		
 		if("Update".equalsIgnoreCase(s)) {
+			
 			RequestDispatcher rd= request.getRequestDispatcher("ShowData");
 			rd.forward(request, response);
 		}

@@ -6,8 +6,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="imges/bank_logo.jpg" type="">
   <title>Edit Record</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -55,6 +62,16 @@
       background-color: #005a8f;
       border-color: #005a8f;
     }
+    .center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.center-image img {
+  max-width: 220px; /* optional: controls image size */
+  border-radius: 8px; /* optional: rounded corners */
+}
   </style>
 </head>
 <body>
@@ -66,8 +83,17 @@
 
   <div class="edit-card">
     <h2 class="edit-title">Edit Record</h2>
-    <form action="InsertData" method="post">
-      
+    <form action="InsertData" method="post" enctype="multipart/form-data">
+    <div class="center-image">
+       <% if (data!= null && data.getId() > 0) { %>
+    <img src="ShowData?id=<%= data.getId() %>" 
+             alt="User Image">
+    <% } else { %>
+        <img src="images/default-avatar.png" 
+             alt="Default Image" 
+             style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid #ddd;">
+    <% } %>
+    </div>
       <input type="hidden" name="id" value="<%=data.getId() %>">
       
       <div class="mb-3">
@@ -103,7 +129,13 @@
         <small class="form-text text-muted">Leave blank to keep the existing password.</small>
       </div>
       
-     
+     <div class="mb-5">
+        <label for="userImage" class="form-label">Phone</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa fa-image"></i></span>
+          <input type="file" class="form-control" id="userImage" value="<%= data.getImage() %>" name="image" >
+        </div>
+      </div>
       
       <div class="d-grid">
         <button type="submit" class="btn btn-primary btn-lg">Update Record</button>
