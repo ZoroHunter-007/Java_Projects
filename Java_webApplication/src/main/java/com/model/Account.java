@@ -5,7 +5,13 @@ import java.time.LocalDateTime;
 public class Account {
 
 	private int ac_id,t_id;
-	private String ac_number,holder_name,ac_type,ac_no,t_type;
+	private String ac_number,holder_name,ac_type,ac_no,t_type,ToTransferAc;
+	public String getToTransferAc() {
+		return ToTransferAc;
+	}
+	public void setToTransferAc(String toTransferAc) {
+		ToTransferAc = toTransferAc;
+	}
 	private double balance,amount;
 	private LocalDateTime date; 
 	public LocalDateTime getDate() {

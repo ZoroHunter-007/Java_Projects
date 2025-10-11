@@ -44,17 +44,24 @@ public class TransactionServlet extends HttpServlet {
 		String ac_no=request.getParameter("accountNumber");
 		String amount=request.getParameter("amount");
 		String type=request.getParameter("type");
-		
-	Account a=new Account();
+		String transferAccount=request.getParameter("transferAccount");
+	
+		Account a=new Account();
 		a.setAc_no(ac_no);
 		a.setAmount(Double.parseDouble(amount));
 		a.setT_type(type);
-		
+	   	a.setToTransferAc(transferAccount);
 		String s=dao.InsertTransaction(a);
-		if("Inserted".equalsIgnoreCase(s)) {
+		if("Updated".equalsIgnoreCase(s)) {
 			RequestDispatcher rd=request.getRequestDispatcher("Bank_web.jsp");
 			rd.forward(request, response);
 		}
+		
+		//String s=dao.InsertTransaction(a);
+		/*if("Inserted".equalsIgnoreCase(s)) {
+			RequestDispatcher rd=request.getRequestDispatcher("Bank_web.jsp");
+			rd.forward(request, response);
+		}*/
 		doGet(request, response);
 	}
 

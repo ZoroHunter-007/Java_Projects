@@ -218,25 +218,7 @@ public class Data_dao implements Data_dao_interface{
 		return al;
 	}
 
-	@Override
-	public String InsertTransaction(Account a) {
-		// TODO Auto-generated method stub
-		try {
-			PreparedStatement ps=con.prepareStatement("INSERT INTO transactions(ac_no,amount,t_type) VALUES(?,?,?)");
-			ps.setString(1, a.getAc_no());
-			ps.setDouble(2, a.getAmount());
-			ps.setString(3, a.getT_type());
-			int i=ps.executeUpdate();
-			if(i>0) {
-				return "Inserted";
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-
+	
 	@Override
 	public List<Account> ShowTransaction() {
 		// TODO Auto-generated method stub
@@ -262,6 +244,110 @@ public class Data_dao implements Data_dao_interface{
 			e.printStackTrace();
 		}
 		return al;
+	}
+
+	
+
+	@Override
+	public void WithdrawAmount(String ac_number,double amount) {
+		// TODO Auto-generated method stub
+		
+	   Account a=new Account();
+		try {
+			PreparedStatement ps=con.prepareStatement("SELECT balance FROM account WHERE ac_number=?");
+			ps.setString(1, ac_number);
+			ResultSet rs=ps.executeQuery();
+			double balance=0.0;
+			
+			if(rs.next()) {
+				balance=rs.getDouble("balance");
+				
+				if(balance>=a.getAmount()) {
+					PreparedStatement ps1=con.prepareStatement("UPDATE account SET balance=balance-? WHERE ac_number=?");
+					ps1.setDouble(1, amount);
+					ps1.setString(2, ac_number);
+					int i=ps1.executeUpdate();
+					if(i>0) {
+						PreparedStatement ps2=con.prepareStatement("INSERT INTO transactions(ac_no,amount,t_type) VALUES(?,?,?)");
+						ps2.setString(1, a.getAc_number());
+						ps2.setDouble(2, a.getAmount());
+						ps2.setString(3, "Withdraw");
+						int j=ps2.executeUpdate();
+						if(j>0) {
+							System.out.println("Transaction Successfull...!");
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+	}
+
+	@Override
+	public String InsertTransaction(Account a) {
+		// TODO Auto-generated method stub
+	
+		try {
+			 con.setAutoCommit(false); // begin transaction
+			PreparedStatement ps=con.prepareStatement("INSERT INTO transactions(ac_no,amount,t_type) VALUES(?,?,?)");
+			ps.setString(1, a.getAc_no());
+			ps.setDouble(2, a.getAmount());
+			ps.setString(3, a.getT_type());
+			int i=ps.executeUpdate();
+			 if (i > 0) {
+		            // 2️⃣ Update balance based on type
+		            String sql = "";
+		            if (a.getT_type().equalsIgnoreCase("deposit")) {
+		                sql = "UPDATE account SET balance = balance + ? WHERE ac_number = ?";
+		            } else if (a.getT_type().equalsIgnoreCase("withdraw")) {
+		                sql = "UPDATE account SET balance = balance - ? WHERE ac_number = ?";
+		            }
+		            else if (a.getT_type().equalsIgnoreCase("transfer")) {
+		                sql = "UPDATE account SET balance = balance - ? WHERE ac_number = ?";
+		                PreparedStatement  ps1=con.prepareStatement(sql);
+		                ps1.setDouble(1, a.getAmount());
+		                ps1.setString(2, a.getAc_number());
+		                int j=ps1.executeUpdate();
+		                if(j>0) {
+		                		con.commit();
+		                
+		                sql="UPDATE account SET balance = balance + ? WHERE ac_number = ?";
+		                PreparedStatement ps2=con.prepareStatement(sql);
+		                ps2.setDouble(1, a.getAmount());
+		                ps2.setString(2, a.getToTransferAc());
+		                int k=ps2.executeUpdate();
+		                if(k>0) {
+		                		con.commit();
+		                		return"Updated";
+		                }
+		                }
+		            }
+		           
+
+		            if (!sql.isEmpty()) {
+		                PreparedStatement ps1 = con.prepareStatement(sql);
+		                ps1.setDouble(1, a.getAmount());
+		                ps1.setString(2, a.getAc_no());
+		                int j = ps1.executeUpdate();
+
+		                if (j > 0) {
+		                    con.commit();
+		                    return"Updated";
+		                } else {
+		                    con.rollback();
+		                }
+		            }
+		        }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	

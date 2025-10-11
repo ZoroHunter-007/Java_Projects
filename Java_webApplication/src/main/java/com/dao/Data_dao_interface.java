@@ -25,7 +25,10 @@ public interface Data_dao_interface {
 	
 	List<Account>ShowAccount();
 	
-	public String InsertTransaction(Account a);
+   public String InsertTransaction(Account a);
+    
+    public void WithdrawAmount(String ac_number, double amount);
+	
 	
 	List<Account>ShowTransaction();
 	
