@@ -9,14 +9,14 @@ public class TestRun {
 	public static void main(String[] args) {
 		
 		Subject s=new Subject();
-		s.setSub_id(106);
-		s.setSub_name("Java");
+		s.setSub_id(108);
+		s.setSub_name("C++");
 		System.out.println("Subject Details:"+s);
 		
 		Student st=new Student();
-		st.setRollno(87);
-		st.setStd_name("pqr");
-		st.setStd_email("pqr@gmail.com");
+		st.setRollno(98);
+		st.setStd_name("pqrs");
+		st.setStd_email("pqrs12@gmail.com");
 		st.setSubject(s);
 		
 		DataDao d=new DataDao();
