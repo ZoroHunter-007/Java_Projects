@@ -53,4 +53,8 @@ public class Dao_Class {
 		List<Bank>list=ss.createQuery("from Bank").list();
 		return list;
 	}
+	
+	public void SaveData() {
+		
+	}
 }

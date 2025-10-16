@@ -26,6 +26,7 @@ public class Department {
 	
 	@OneToMany(mappedBy = "dept",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Employee>emp;
+	
 	public int getDept_id() {
 		return dept_id;
 	}
