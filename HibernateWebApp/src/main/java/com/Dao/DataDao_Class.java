@@ -13,17 +13,11 @@ public class DataDao_Class {
     Transaction t = null;
     public void InsertData(Register_Cust rc) {
         
-        try {
-            s = Session_Class.getSession();
-            t = s.beginTransaction();
-            s.persist(rc);
-            t.commit();
-        } catch (Exception e) {
-            if (t != null) t.rollback();
-            e.printStackTrace();
-        } finally {
-            if (s != null) s.close();
-        }
+    	  s = Session_Class.getSession();
+          t = s.beginTransaction();
+          s.persist(rc);
+          t.commit();
+          s.close();
     }
     
     public List<Register_Cust> showData(String email, String password) {

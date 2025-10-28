@@ -23,7 +23,7 @@ public class Data_dao implements Data_dao_interface{
 	public String InsertData(user_reg ur) {
 	
 		try {
-			PreparedStatement ps=con.prepareStatement("INSERT INTO bank_app(username,phone,email,password,image) VALUES(?,?,?,?,?)");
+			PreparedStatement ps=con.prepareStatement("INSERT INTO bank_reg(username,phone,email,password,image) VALUES(?,?,?,?,?)");
 			ps.setString(1, ur.getUsername());
 			ps.setString(2, ur.getPhone());
 			ps.setString(3, ur.getEmail());
@@ -50,7 +50,7 @@ public class Data_dao implements Data_dao_interface{
 		ArrayList<user_reg>al=new ArrayList<user_reg>();
 		
 		try {
-			PreparedStatement ps=con.prepareStatement("SELECT id,email,username,phone,password FROM bank_app");
+			PreparedStatement ps=con.prepareStatement("SELECT id,email,username,phone,password FROM bank_reg");
 			ResultSet rs=ps.executeQuery();
 			
 			user_reg u;
@@ -73,7 +73,7 @@ public class Data_dao implements Data_dao_interface{
 	public byte[] showImage(int id) {
 		byte [] imageShow=null;
 		try {
-			PreparedStatement ps=con.prepareStatement("SELECT image FROM bank_app WHERE id=?");
+			PreparedStatement ps=con.prepareStatement("SELECT image FROM bank_reg WHERE id=?");
 			ps.setInt(1, id);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()) {
@@ -92,7 +92,7 @@ public class Data_dao implements Data_dao_interface{
 		// TODO Auto-generated method stub
 		user_reg u=null;
 		try {
-			PreparedStatement ps=con.prepareStatement("SELECT *FROM bank_app WHERE id=?");
+			PreparedStatement ps=con.prepareStatement("SELECT *FROM bank_reg WHERE id=?");
 			ps.setInt(1, id);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
@@ -116,7 +116,7 @@ public class Data_dao implements Data_dao_interface{
 	public String DeleteId(int id) {
 	    // 1. Use try-with-resources to automatically close the PreparedStatement and Connection
 	   try {
-		PreparedStatement ps=con.prepareStatement("DELETE FROM bank_app WHERE id=?");
+		PreparedStatement ps=con.prepareStatement("DELETE FROM bank_reg WHERE id=?");
 		ps.setInt(1, id);
 		int i=ps.executeUpdate();
 		if(i>0) {
@@ -134,7 +134,7 @@ public class Data_dao implements Data_dao_interface{
 	public String UpdateData(user_reg ur) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=con.prepareStatement("UPDATE bank_app SET username=?,phone=?,password=?,email=? ,image=? WHERE id=?");
+			PreparedStatement ps=con.prepareStatement("UPDATE bank_reg SET username=?,phone=?,password=?,email=? ,image=? WHERE id=?");
 			ps.setString(1, ur.getUsername());
 			ps.setString(2, ur.getPhone());
 			ps.setString(3, ur.getPassword());
@@ -157,7 +157,7 @@ public class Data_dao implements Data_dao_interface{
 	public String VerifyLogin(user_reg ur) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=con.prepareStatement("SELECT *FROM bank_app WHERE email=? AND password=?");
+			PreparedStatement ps=con.prepareStatement("SELECT *FROM bank_reg WHERE email=? AND password=?");
 			ps.setString(1, ur.getEmail());
 			ps.setString(2, ur.getPassword());
 			ResultSet rs=ps.executeQuery();
