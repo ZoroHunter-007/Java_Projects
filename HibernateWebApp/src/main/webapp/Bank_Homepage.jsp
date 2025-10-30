@@ -426,7 +426,7 @@ footer {
             <div class="col-md-6">
                 <div class="auth-card">
                   <h4 class="auth-title">Enter Account Details</h4>
-                  <form action="InsertAccount" method="post">
+                  <form action="acc" method="post">
                     <div class="mb-3">
                       <label for="withdrawAccount" class="form-label">Enter Account Number</label>
                       <input type="text" name="account_num" class="form-control form-control-sm" id="withdrawAccount" placeholder="Enter account number" min="0.01" step="0.01" required>

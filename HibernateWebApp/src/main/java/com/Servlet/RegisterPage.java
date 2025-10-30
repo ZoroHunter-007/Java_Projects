@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.Dao.DataDao_Class;
+import com.Model.Account;
 import com.Model.Register_Cust;
 
 /**
@@ -53,6 +54,12 @@ public class RegisterPage extends HttpServlet {
 	        rc.setEmail(email);
 	        rc.setPno(pno);
 	        rc.setPassword(password);
+	        
+	        Account acc = new Account();
+	        acc.setHolder_name(fullname);
+
+	        rc.setAcc(acc); // LINK account with user
+	        acc.setRc(rc);
 
 	        Mailer.send(email,"Account Registration Successfully","Welcome, "+fullname+" Your Account has been registred successfully.Thank you for choosing our bank application.");
 	        // 3️⃣ Call DAO to save entity
@@ -60,7 +67,7 @@ public class RegisterPage extends HttpServlet {
 	       
 	            dao.InsertData(rc);
 	            // 4️⃣ Redirect or show success message
-	         RequestDispatcher rd=request.getRequestDispatcher("test.jsp");
+	         RequestDispatcher rd=request.getRequestDispatcher("Bank_Homepage.jsp");
 	         rd.forward(request, response);
 	       
 		
