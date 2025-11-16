@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dbConnection" class="com.emp.config.DBConfig" factory-method="getConnection"/>
+
+    <bean id="employeeDAO" class="com.emp.dao.EmployeeDAO">
+        <constructor-arg ref="dbConnection"/>
+    </bean>
+
+    <bean id="employeeService" class="com.emp.service.EmployeeService">
+        <constructor-arg ref="employeeDAO"/>
+    </bean>
+
+    <bean id="employeeController" class="com.emp.controller.EmployeeController">
+        <constructor-arg ref="employeeService"/>
+    </bean>
+
+</beans>
