@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+       <bean id="bike" class="com.Model.Bike">
+       <property name="bike_id" value="11201"></property>
+       <property name="bike_name" value="Super Splender"></property>
+       <property name="bike_modelno" value="2021"></property>
+       <property name="bike_price" value="25000"></property>
+       
+       </bean>
+       
+        <bean id="car" class="com.Model.Car">
+       <property name="car_id" value="201236"></property>
+       <property name="car_name" value="BMW M5 CS"></property>
+       <property name="car_model" value="2021"></property>
+       <property name="price" value="6000000"></property>
+       
+       </bean>
+       
+        <bean id="vehical" class="com.Model.Vehical">
+       <property name="vehical_id" value="52469"></property>
+       <property name="vehical_condition" value="Good"></property>
+       <property name="b" ref="bike"></property>
+       <property name="c" ref="car"></property>
+       
+       </bean>
+       </beans>
