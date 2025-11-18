@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+       	<bean id="students" class="com.Student.Students">
+       	<property name="studId" value="122"></property>
+  		<property name="studName" value="Dhruv"></property>
+  		      
+		</bean>
+		
+		<bean id="courses" class="com.Curses.Courses">
+       	<property name="course_id" value="115"></property>
+  		<property name="courseName" value="Java Developer"></property>
+  		      
+		</bean>
+		
+		<bean id="courses1" class="com.Curses.Courses">
+       	<property name="course_id" value="155"></property>
+  		<property name="courseName" value="FullStack Developer"></property>
+  		      
+		</bean>
+		
+		<bean id="generics" class="com.Generics.generics">
+		<property name="list">
+		<list>
+		<ref bean="students"/>
+		<ref bean="courses"/>
+		<ref bean="courses1"/>
+		</list>
+
+		</property>
+		
+		</bean>
+		
+		<bean id="book" class="com.Book.Book">
+		<constructor-arg index="0" value="101"></constructor-arg>
+		<constructor-arg index="1" value="Richard'braninson"></constructor-arg>
+		<constructor-arg index="2" value="Richard'braninson"></constructor-arg>
+		<constructor-arg index="3" value="159.20"></constructor-arg>
+		</bean>
+		
+		<bean id="book1" class="com.Book.Book">
+		<constructor-arg index="0" value="102"></constructor-arg>
+		<constructor-arg index="1" value="Sundar Kthao"></constructor-arg>
+		<constructor-arg index="2" value="Mira Alffasa"></constructor-arg>
+		<constructor-arg index="3" value="250.80"></constructor-arg>
+		</bean>
+		
+		<bean id="book2" class="com.Book.Book">
+		<constructor-arg index="0" value="103"></constructor-arg>
+		<constructor-arg index="1" value="thakrey"></constructor-arg>
+		<constructor-arg index="2" value="BalaSaheb Thakare"></constructor-arg>
+		<constructor-arg index="3" value="300.50"></constructor-arg>
+		</bean>
+		
+		<bean id="library" class="com.Library.Library">
+		<constructor-arg index="0" value="201154"></constructor-arg>
+		<constructor-arg index="1" value="Chanayak Library"></constructor-arg>
+		
+		</bean>
+		
+		<bean id="runclass" class="com.Model.MainClass">
+		<constructor-arg index="0">
+		<list>
+		<ref bean="book"/>
+		<ref bean="book1"/>
+		<ref bean="book2"/>
+		<ref bean="library"/>
+		
+		</list>
+		
+		</constructor-arg>
+		
+		</bean>
+		
+		
+		<bean id="product" class="com.Product.Product">
+		<constructor-arg index="0" value="123789945"></constructor-arg>
+		<constructor-arg index="1" value="Asus TUF F15 Gaming Laptop"></constructor-arg>
+		<constructor-arg index="2" value="70000"></constructor-arg>
+		<constructor-arg index="3" value="1"></constructor-arg>
+		
+		</bean>
+		
+		
+		<bean id="product1" class="com.Product.Product">
+		<constructor-arg index="0" value="15545445"></constructor-arg>
+		<constructor-arg index="1" value="Lenevo LQO Gaming Laptop"></constructor-arg>
+		<constructor-arg index="2" value="75000"></constructor-arg>
+		<constructor-arg index="3" value="1"></constructor-arg>
+		
+		</bean>
+		
+		
+		<bean id="product2" class="com.Product.Product">
+		<constructor-arg index="0" value="15155445"></constructor-arg>
+		<constructor-arg index="1" value="Dell G15 Gaming Laptop"></constructor-arg>
+		<constructor-arg index="2" value="72500"></constructor-arg>
+		<constructor-arg index="3" value="1"></constructor-arg>
+		
+		</bean>
+		
+		<bean id="warehouse" class="com.Warehouse.Warehouse">
+		<constructor-arg index="0" value="14548447"></constructor-arg>
+		<constructor-arg index="1" value="Gaming Laptop Stocks"></constructor-arg>
+		<constructor-arg index="2" value="970007.45"></constructor-arg>
+		
+		
+		</bean>
+		
+		<bean id="shop" class="com.Model.Shop">
+		<constructor-arg index="0">
+		<list>
+		<ref bean="product"></ref>
+		<ref bean="product1"></ref>
+		<ref bean="product2"></ref>
+		<ref bean="warehouse"></ref>
+		</list>
+
+		</constructor-arg>
+		
+		
+		</bean>
+		
+</beans>
