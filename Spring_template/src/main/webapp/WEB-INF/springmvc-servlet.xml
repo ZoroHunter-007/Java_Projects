@@ -19,7 +19,7 @@
         <property name="dataSource" ref="datasource"/>
     </bean>
 
-    <context:component-scan base-package="com.spring.jdbctemplate" />
+    <context:component-scan base-package="com.spring.jdbc.templates" />
    
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

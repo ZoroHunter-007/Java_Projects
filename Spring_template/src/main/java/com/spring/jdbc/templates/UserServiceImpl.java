@@ -1,4 +1,4 @@
-package com.spring.jdbctemplate;
+package com.spring.jdbc.templates;
 
 import java.util.List;
 
@@ -8,24 +8,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
-	
-		@Autowired
-		UserDao userDao;
+public class UserServiceImpl  implements UserService{
+
+	@Autowired
+	UserDao userDao;
+	@Override
+	public void InsertData(Student stud) {
+		// TODO Auto-generated method stub
+		userDao.InsertData(stud);
 		
-
-	@Override
-	public void register(User user) {
-		// TODO Auto-generated method stub
-		userDao.register(user);
 	}
-
-
 	@Override
-	public List<User> getallUser() {
+	public List<Student> showAllData() {
 		// TODO Auto-generated method stub
-		 return userDao.getallUsers();
-	
+		return userDao.showAllData();
 	}
 
 }
