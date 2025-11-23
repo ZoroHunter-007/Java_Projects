@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="register">Add Register</a>
+<a href="register">Add Register</a><br>
+<a href="showdata">Show Students Data</a>
 </body>
 </html>
