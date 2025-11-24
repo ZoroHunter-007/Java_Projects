@@ -10,5 +10,10 @@ public interface UserDao {
 	//Show All Data
 	List<User> getallUsers();
 	
+	//get data by UserId
+	public User getUserById(int id);
+	
+	//update userData
+	void UpdateUser(User user);
 	
 }

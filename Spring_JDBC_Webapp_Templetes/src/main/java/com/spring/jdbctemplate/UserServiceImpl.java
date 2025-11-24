@@ -28,4 +28,19 @@ public class UserServiceImpl implements UserService {
 	
 	}
 
+
+	@Override
+	public User getUserById(int id) {
+		// TODO Auto-generated method stub
+		return userDao.getUserById(id);
+	}
+
+
+	@Override
+	public void UpdateUser(User user) {
+		// TODO Auto-generated method stub
+		userDao.UpdateUser(user);
+		
+	}
+
 }
