@@ -10,5 +10,11 @@ public interface UserService {
 	//show all data
 	List<User>getallUser();
 	
+	//get data by UserId
+	public User getUserById(int id);
+	
+	//update userData
+		void UpdateUser(User user);
+	
 	
 }
