@@ -10,8 +10,8 @@
 <h2>Update User Data</h2>
 <form action="edituser" method="post">
 	ID: <input type="hidden" name="id" value="${editdata.id}"><br>
-    Username: <input type="text" name="username" value="${editdata.username}"><br>
-    Password: <input type="password" name="password" value="${editdata.password}"><br>
+    Username: <input type="text" name="username" value="${editdata.username}" required/><br>
+    Password: <input type="password" name="password" value="${editdata.password}" required/><br>
     <input type="submit" value="Update">
     ${update}
 </form>

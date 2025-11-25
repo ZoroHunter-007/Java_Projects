@@ -71,4 +71,13 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
+
+	@Override
+	public void DeleteUser(int id) {
+		// TODO Auto-generated method stub
+		String sql="delete from user where id=?";
+		jdbcTemplate.update(sql, new Object[] {id});
+		
+	}
+
 }
