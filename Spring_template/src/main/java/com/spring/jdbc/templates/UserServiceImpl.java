@@ -23,5 +23,22 @@ public class UserServiceImpl  implements UserService{
 		// TODO Auto-generated method stub
 		return userDao.showAllData();
 	}
+	@Override
+	public Student StudentById(int id) {
+		// TODO Auto-generated method stub
+		return userDao.StudentById(id);
+	}
+	@Override
+	public void UpdateData(Student stud) {
+		// TODO Auto-generated method stub
+		userDao.UpdateData(stud);
+		
+	}
+	@Override
+	public void DeleteData(int id) {
+		// TODO Auto-generated method stub
+		userDao.DeleteData(id);
+		
+	}
 
 }

@@ -10,4 +10,12 @@ public interface UserService {
 	//show data
 	List<Student>showAllData();
 	
+	//display data by ID
+	Student StudentById(int id);
+	
+	//update Student
+	void UpdateData(Student stud);
+	
+	//delete Student
+		void DeleteData(int id);
 }

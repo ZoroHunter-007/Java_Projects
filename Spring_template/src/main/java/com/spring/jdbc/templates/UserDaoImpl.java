@@ -38,4 +38,37 @@ public class UserDaoImpl implements UserDao{
 		
 	}
 
+	@Override
+	public Student StudentById(int id) {
+		// TODO Auto-generated method stub
+		String sql="select * from student where stud_id="+id;
+		
+		return jdbcTemplate.queryForObject(sql, (rs, rowNum) ->{
+			
+			Student stud=new Student();
+			stud.setStud_id(rs.getInt("stud_id"));
+			stud.setStud_name(rs.getString("stud_name"));
+			stud.setStud_pass(rs.getString("stud_pass"));
+			return stud;
+		});
+	}
+
+	@Override
+	public void UpdateData(Student stud) {
+		// TODO Auto-generated method stub
+		String sql="update student set stud_name=?,stud_pass=? where stud_id=?";
+		jdbcTemplate.update(sql, new Object[] {stud.getStud_name(),stud.getStud_pass(),stud.getStud_id()});
+		
+	}
+
+	@Override
+	public void DeleteData(int id) {
+		// TODO Auto-generated method stub
+		String sql="delete from student where stud_id=?";
+		jdbcTemplate.update(sql,new Object[] {id});
+		
+	}
+
+
+
 }
