@@ -61,4 +61,11 @@ public class UserController {
 		 return "redirect:/showdata";
 	}
 	
+	@GetMapping(value = "/delete")
+	public String deleteUser(@RequestParam("id") int id,HttpSession session) {
+		 userService.DeleteUser(id);
+		 session.setAttribute("msg", "Data Deleted Successfully...");
+	        return "redirect:/showdata";
+	}
+	
 }

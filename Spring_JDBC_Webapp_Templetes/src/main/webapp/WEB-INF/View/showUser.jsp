@@ -21,7 +21,7 @@
 
 <c:forEach var="u" items="${users}">
 <tr>
-<td>${u.id}</td>
+<td>${u.id}</td> 
 <td>${u.username }</td>
 <td>${u.password }</td>
 <td><a href="edit?id=${u.id}">Edit</a></td>
@@ -31,6 +31,6 @@
 </c:forEach>
 
 </table>
-
+${msg}
 </body>
 </html>
