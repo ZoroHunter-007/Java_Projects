@@ -70,12 +70,15 @@
 
 <div class="table-container">
     <h2>Student Records</h2>
-    <table>
+		${del}
+		<table>
         <thead>
             <tr>
                 <th>Student ID</th>
                 <th>Name</th>
                 <th>Password</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -84,7 +87,8 @@
      <td>${std.stud_id}</td>
      <td>${std.stud_name}</td>
      <td>${std.stud_pass}</td>
-     
+     <td><a href="edit?id=${std.stud_id}">Edit</a></td>
+     <td><a href="delete?id=${std.stud_id}">Delete</a></td>
      </tr>
      
      
