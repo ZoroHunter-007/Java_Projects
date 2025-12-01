@@ -176,7 +176,7 @@ public class Data_dao implements Data_dao_interface{
 	public String InsertAccount(Account a) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=con.prepareStatement("INSERT INTO account(ac_number,holder_name,ac_type,balance) VALUES(?,?,?,?)");
+			PreparedStatement ps=con.prepareStatement("INSERT INTO acc(ac_number,holder_name,ac_type,balance) VALUES(?,?,?,?)");
 			ps.setString(1, a.getAc_number());
 			ps.setString(2, a.getHolder_name());
 			ps.setString(3, a.getAc_type());
@@ -198,7 +198,7 @@ public class Data_dao implements Data_dao_interface{
 		ArrayList<Account>al=new ArrayList<Account>();
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=con.prepareStatement("SELECT* FROM account");
+			PreparedStatement ps=con.prepareStatement("SELECT* FROM acc");
 			ResultSet rs=ps.executeQuery();
 			Account a;
 			while(rs.next()) {

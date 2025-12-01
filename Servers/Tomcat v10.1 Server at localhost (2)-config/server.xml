@@ -17,7 +17,7 @@
 --><!-- Note:  A "Server" is not itself a "Container", so you may not
      define subcomponents such as "Valves" at this level.
      Documentation at /docs/config/server.html
- --><Server port="8005" shutdown="SHUTDOWN">
+ --><Server port="8006s" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
@@ -61,7 +61,15 @@
          AJP  Connector: /docs/config/ajp.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector connectionTimeout="20000" maxParameterCount="1000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
+   <Connector SSLEnabled="true" port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" scheme="https" secure="true">
+  <SSLHostConfig>
+    <Certificate certificateKeystoreFile="C:\tomcatssl.keystore" certificateKeystorePassword="123456" type="RSA"/>
+  </SSLHostConfig>
+</Connector>
+<Connector connectionTimeout="20000" port="8081" protocol="HTTP/1.1" redirectPort="8443"/>
+
+
+
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -142,7 +150,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Spring_JDBC_Webapp_Templetes" path="/Spring_JDBC_Webapp_Templetes" reloadable="true" source="org.eclipse.jst.jee.server:Spring_JDBC_Webapp_Templetes"/></Host>
+      <Context docBase="Spring_JDBC_Webapp_Templetes" path="/Spring_JDBC_Webapp_Templetes" reloadable="true" source="org.eclipse.jst.jee.server:Spring_JDBC_Webapp_Templetes"/><Context docBase="HibernateWebApp" path="/HibernateWebApp" reloadable="true" source="org.eclipse.jst.jee.server:HibernateWebApp"/><Context docBase="Java_WebApp" path="/Java_WebApp" reloadable="true" source="org.eclipse.jst.jee.server:Java_WebApp"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -2,8 +2,12 @@ package com.Dao;
 
 
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import com.Model.Account;
 import com.Model.Register_Cust;
 import com.util.Session_Class;
@@ -66,6 +70,16 @@ public class DataDao_Class {
         t.commit();
         s.close();
   }
+    public boolean checkEmailExists(String email) {
+        Session ses = Session_Class.getSession();
+        String hql = "FROM Register_Cust WHERE email = :email";
+        Query q = ses.createQuery(hql);
+        q.setParameter("email", email);
+        List list = q.list();
+        ses.close();
+        return !list.isEmpty(); // true if email exists
+    }
+
   
 
 

@@ -355,7 +355,7 @@ footer {
             <div class="card shadow p-3 mb-3">
               <h5>Account Summary</h5>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Account Holder: John Doe</li>
+                <li class="list-group-item">Account Holder: Dhruv Malusare</li>
                 <li class="list-group-item">Account Number: 123456</li>
                 <li class="list-group-item">Balance: ₹5000</li>
               </ul>
