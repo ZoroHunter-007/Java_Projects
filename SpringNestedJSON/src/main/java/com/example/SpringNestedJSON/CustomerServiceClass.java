@@ -14,4 +14,12 @@ public class CustomerServiceClass {
 		return customerRepo.save(entity);
 		
 	}
+	
+	//fetch all Customers with orders
+	public Iterable<CustomerEntity> fetchAllCustomers(){
+		return customerRepo.findAll();
+	}
+	
+	
+	
 }

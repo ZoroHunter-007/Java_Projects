@@ -2,6 +2,7 @@ package com.example.SpringNestedJSON;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,5 +17,11 @@ public class CustomerController {
 	public ResponseEntity<CustomerEntity>SaveCutomer(@RequestBody CustomerEntity entity){
 		CustomerEntity customerEntity=serviceClass.saveCustomer(entity);
 		return ResponseEntity.ok(customerEntity);
+	}
+	
+	@GetMapping("/showCustomer")
+	public ResponseEntity<Iterable<CustomerEntity>>FetchAllData(){
+		Iterable<CustomerEntity>entiIterable=serviceClass.fetchAllCustomers();
+		return ResponseEntity.ok(entiIterable);
 	}
 }

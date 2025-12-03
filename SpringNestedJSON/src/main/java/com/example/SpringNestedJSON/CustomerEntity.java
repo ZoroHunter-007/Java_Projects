@@ -2,6 +2,8 @@ package com.example.SpringNestedJSON;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +24,7 @@ public class CustomerEntity {
 	private String custName;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "customerEntity")
+	@JsonManagedReference
 	private List<OrderEntity> orderEntity;
 	public int getCustId() {
 		return custId;
