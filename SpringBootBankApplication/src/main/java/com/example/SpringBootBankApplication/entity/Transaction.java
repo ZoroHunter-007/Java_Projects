@@ -1,5 +1,69 @@
 package com.example.SpringBootBankApplication.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Transaction {
 
+	@Id
+	@GeneratedValue
+	private int transactionId;
+	
+	@Column
+	private int accId;
+	
+	@Column
+	private double amount;
+	
+	@Column
+	private String transactionType;
+	
+	@CreationTimestamp
+	private LocalDateTime transactionDate;
+	
+	@Column
+	private String description;
+	public int getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(int transactionId) {
+		this.transactionId = transactionId;
+	}
+	public int getAccId() {
+		return accId;
+	}
+	public void setAccId(int accId) {
+		this.accId = accId;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public String getTransactionType() {
+		return transactionType;
+	}
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
+	}
+	public LocalDateTime getTransactionDate() {
+		return transactionDate;
+	}
+	public void setTransactionDate(LocalDateTime transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

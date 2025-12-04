@@ -8,6 +8,8 @@ public class SpringBootBankApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootBankApplication.class, args);
+		
+
 	}
 
 }
