@@ -17,7 +17,7 @@ public class Account {
 	@GeneratedValue
 	private int accId;
 	
-	@Column(unique = true)
+	@Column(unique = true,nullable = false)
 	private String accNumber;
 	
 	@Column

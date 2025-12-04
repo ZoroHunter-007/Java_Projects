@@ -1,5 +1,7 @@
 package com.example.SpringBootBankApplication.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,10 @@ public class AccountServiceClass {
 	public Account SaveAccount(Account ac) {
 		ac.setAccNumber(generateAccountNumber());
 		return accountRepo.save(ac);
+	}
+	
+	public List<Account>showAllData(){
+		return accountRepo.findAll();
 	}
 	
 }

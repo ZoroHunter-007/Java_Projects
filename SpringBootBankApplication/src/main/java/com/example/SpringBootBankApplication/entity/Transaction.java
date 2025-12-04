@@ -16,9 +16,15 @@ public class Transaction {
 	@GeneratedValue
 	private int transactionId;
 	
-	@Column
-	private int accId;
+	@Column(nullable = false)
+	private String accNumber;
 	
+	public String getAccNumber() {
+		return accNumber;
+	}
+	public void setAccNumber(String accNumber) {
+		this.accNumber = accNumber;
+	}
 	@Column
 	private double amount;
 	
@@ -36,12 +42,7 @@ public class Transaction {
 	public void setTransactionId(int transactionId) {
 		this.transactionId = transactionId;
 	}
-	public int getAccId() {
-		return accId;
-	}
-	public void setAccId(int accId) {
-		this.accId = accId;
-	}
+	
 	public double getAmount() {
 		return amount;
 	}
