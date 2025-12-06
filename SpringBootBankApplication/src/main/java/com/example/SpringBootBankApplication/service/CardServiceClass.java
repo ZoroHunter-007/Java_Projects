@@ -21,4 +21,27 @@ public class CardServiceClass {
 	public List<Card>showAll(){
 		return cardRepo.findAll();
 	}
+	
+	public Card getById(int id) {
+		return cardRepo.findById(id).orElse(null);
+	}
+	
+	public void DeleteById(int id) {
+		cardRepo.deleteById(id);
+	}
+	
+	public Card updateData(int id, Card card) {
+		Card c=cardRepo.findById(id).orElse(null);
+		if(c!=null) {
+			c.setCardNumber(card.getCardNumber());
+			c.setStatus(card.getStatus());
+			c.setCardType(card.getCardType());
+			c.setCvv(card.getCvv());
+			c.setExpiryDate(card.getExpiryDate());
+			return cardRepo.saveAndFlush(c);
+		}
+		else {
+			return null;
+		}
+	}
 }

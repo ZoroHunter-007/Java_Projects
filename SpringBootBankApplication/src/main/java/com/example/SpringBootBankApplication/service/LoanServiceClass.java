@@ -21,4 +21,29 @@ public class LoanServiceClass {
 	public List<Loan>showAll(){
 		return loanRepo.findAll();
 	}
+	
+	public Loan getLoanDataById(int id) {
+		return loanRepo.findById(id).orElse(null);
+	}
+	
+	public void delById(int id) {
+		loanRepo.deleteById(id);
+	}
+	
+	public Loan updateData(int id, Loan loan) {
+		Loan l=loanRepo.findById(id).orElse(null);
+		if(l!=null) {
+			l.setLoanAmount(loan.getLoanAmount());
+			l.setLoanType(loan.getLoanType());
+			l.setRate(l.getRate());
+			l.setStatus(loan.getStatus());
+			l.setStartDate(loan.getStartDate());
+			l.setEndDate(loan.getEndDate());
+			return loanRepo.saveAndFlush(l);
+		}
+	
+		else {
+			return null;
+		}
+	}
 }

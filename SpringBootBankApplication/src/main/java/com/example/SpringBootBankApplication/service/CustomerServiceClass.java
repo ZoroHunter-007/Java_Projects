@@ -90,5 +90,9 @@ public class CustomerServiceClass {
 
 	    return updated;
 	}
+	
+	public void DeleteDataById(int id) {
+		customerRepo.deleteById(id);
+	}
 
 }

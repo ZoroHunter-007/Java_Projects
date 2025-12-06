@@ -21,4 +21,24 @@ public class TransactionServiceClass {
 	public List<Transaction>showAll(){
 		return transactionRepo.findAll();
 	}
+	
+	public Transaction getDataTxById(int id) {
+		return transactionRepo.findById(id).orElse(null);
+	}
+	public void deleteById(int id) {
+		transactionRepo.deleteById(id);
+	}
+	
+	public Transaction updateData(int id, Transaction transaction) {
+		Transaction tx=transactionRepo.findById(id).orElse(null);
+		if(tx!=null) {
+			tx.setAmount(transaction.getAmount());
+			tx.setDescription(transaction.getDescription());
+			tx.setTransactionType(transaction.getTransactionType());
+			return transactionRepo.saveAndFlush(tx);
+		}
+		else {
+			return null;
+		}
+	}
 }
