@@ -1,6 +1,7 @@
 package com.example.SpringBootBankApplication.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,6 +28,14 @@ public class CustomerServiceClass {
 	public Customer SaveCustomer(Customer cust) {
 		String encryptPass=encoder.encode(cust.getPassword());
 		cust.setPassword(encryptPass);
+		 cust.getAccount().forEach(ac -> {
+		        ac.setCustomer(cust);
+
+		        // Auto generate account number (simple)
+		        String accNo = "AC" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+		        ac.setAccNumber(accNo);
+
+		    });
 		Customer savedCust=customerRepo.save(cust);
 		 CustomerEmail email = new CustomerEmail();
 	        email.setRecipient(cust.getEmail());

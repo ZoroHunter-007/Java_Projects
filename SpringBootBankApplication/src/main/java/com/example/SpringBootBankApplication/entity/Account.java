@@ -3,11 +3,16 @@ package com.example.SpringBootBankApplication.entity;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.ManyToAny;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 
@@ -31,6 +36,17 @@ public class Account {
 	
 	@CreationTimestamp
 	private LocalDateTime createdAt;
+	
+	@ManyToOne
+	@JoinColumn(name="custId")
+	@JsonBackReference
+	public Customer customer;
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public int getAccId() {
 		return accId;
 	}

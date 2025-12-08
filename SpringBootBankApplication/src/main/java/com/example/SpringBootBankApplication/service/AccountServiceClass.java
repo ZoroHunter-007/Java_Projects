@@ -16,28 +16,11 @@ public class AccountServiceClass {
 	@Autowired
 	private AccountRepo accountRepo;
 	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
 	
-	//generate the account number random number
-	private String generateAccountNumber() {
-		long random=(long)(Math.random()* 900000000000L)+100000000000L;
-		return "AC" +random;
-	}
 	
-	//generate the unique account number 
-	private String uniqueAccNumber() {
-		String ac;
-		do {
-			ac=generateAccountNumber();
-			
-		}while(accountRepo.existsByaccNumber(ac));
-		return ac;
-	}
 	
 	//insert the account data
 	public Account SaveAccount(Account ac) {
-		ac.setAccNumber(generateAccountNumber());
 		return accountRepo.save(ac);
 	}
 	

@@ -2,13 +2,19 @@ package com.example.SpringBootBankApplication.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -37,6 +43,21 @@ public class Customer {
 	
 	@CreationTimestamp
 	private LocalDateTime createdAt;
+	
+	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JsonManagedReference
+	public List<Account>account;
+	
+	public List<Account> getAccount() {
+		return account;
+	}
+	public void setAccount(List<Account> account) {
+		this.account = account;
+		
+		if(account!=null) {
+			account.forEach(ac -> ac.setCustomer(this));
+		}
+	}
 	public int getCustId() {
 		return custId;
 	}
