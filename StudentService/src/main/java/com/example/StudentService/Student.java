@@ -1,8 +1,12 @@
 package com.example.StudentService;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,13 +19,18 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collation = "students")
+@Entity
 public class Student {
 
 	@Id
+	
 	private String id;
+	@Column
 	private String studName;
+	@Column
 	private int age;
+	@Column
 	private String gender;
+	@Column
 	private Integer schoolId;
 }

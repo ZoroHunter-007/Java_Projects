@@ -22,18 +22,18 @@ public class SchoolController {
 	@Autowired
 	private SchoolSerivice schoolSerivice;
 	
-	@PostMapping("/add")
+	@PostMapping
 	public ResponseEntity<School>addSchool(@RequestBody School school){
 		System.out.println(">>> Received: " + school);
 		School sc=schoolSerivice.addStudents(school);
 		return ResponseEntity.ok(sc);
 	}
-	@GetMapping("/show")
+	@GetMapping
 	public ResponseEntity<List<School>>showAllData(){
 		return ResponseEntity.ok(schoolSerivice.getAllData());
 	}
 	
-	@GetMapping("/show/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<School>getDataById(@PathVariable int id){
 		School sc=schoolSerivice.getById(id);
 		if(sc!=null) {
@@ -44,7 +44,7 @@ public class SchoolController {
 		}
 	}
 	
-	@PutMapping("/update/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<School>updateSchool(@PathVariable int id,@RequestBody School school){
 		School sc=schoolSerivice.updateData(id, school);
 		if(sc!=null) {
